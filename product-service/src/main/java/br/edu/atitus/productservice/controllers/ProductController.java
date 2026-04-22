@@ -4,6 +4,7 @@ import br.edu.atitus.productservice.dtos.ProductDTO;
 import br.edu.atitus.productservice.entities.ProductEntity;
 import br.edu.atitus.productservice.repositories.ProductRepository;
 import org.springframework.core.env.Environment;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,11 +13,12 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     private final ProductRepository repository;
-    private final Environment environment;
 
-    public ProductController(ProductRepository repository, Environment environment) {
+    @Value("${server.port}")
+    private String port;
+
+    public ProductController(ProductRepository repository) {
         this.repository = repository;
-        this.environment = environment;
     }
 
     @GetMapping("/{idproduct}")
@@ -27,7 +29,7 @@ public class ProductController {
         ProductEntity product = repository.findById(idproduct)
                 .orElseThrow(() -> new Exception("Product not found"));
 
-        String port = environment.getProperty("local.server.port");
+        String environment = "Product Service running on port " + port;
 
         ProductDTO dto = new ProductDTO(
                 product.getId(),
@@ -37,9 +39,9 @@ public class ProductController {
                 product.getPrice(),
                 product.getCurrency(),
                 product.getStock(),
-                "Product-service running on Port: " + port,
-                null, // convertedPrice (por enquanto)
-                targetCurrency // requestedCurrency
+                environment,
+                null, // futuramente chamar currency-service
+                targetCurrency
         );
 
         return ResponseEntity.ok(dto);
