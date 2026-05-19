@@ -5,11 +5,11 @@ public record ProductDTO(
         String description,
         String brand,
         String model,
-        Double price,
-        String currency,
+        String price,
+        Double currency,
         Integer stock,
-        String environment,
-        Double convertedPrice,
+        Double environment,
+        String convertedPrice,
         String requestedCurrency
 ) {
 }
