@@ -72,6 +72,7 @@ public class ProductController {
                 entity.getCurrency(),
                 entity.getPrice(),
                 entity.getStock(),
+                entity.getImageURL(),
                 convertedPrice,
                 environment,
                 requestCurrency

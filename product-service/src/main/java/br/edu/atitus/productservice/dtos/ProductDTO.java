@@ -8,6 +8,7 @@ public record ProductDTO(
         String price,
         Double currency,
         Integer stock,
+        String imageURL,
         Double environment,
         String convertedPrice,
         String requestedCurrency
