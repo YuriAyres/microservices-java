@@ -30,6 +30,9 @@ public class ProductEntity {
         return id;
     }
 
+    public void setId(Long idProduct) {
+    }
+
     public String getDescription() {
         return description;
     }
@@ -85,4 +88,5 @@ public class ProductEntity {
     public void setImageURL(String imageURL) {
         this.imageURL = imageURL;
     }
+
 }
